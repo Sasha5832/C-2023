@@ -1,0 +1,159 @@
+using System.Windows.Forms;
+
+namespace HrypasOleksandr
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            /*
+            int liczbaN = (int)numericUpDownN.Value;
+            ulong wynik = Fib2(liczbaN);
+            int[] tab = { 5, 4, 3, 2, 1};
+            int[] tabtemp = { 5, 4, 3, 2, 1};
+            int temp = 0;
+            int d = 5;
+            bool czyzamiana = false;
+            do
+            {
+                czyzamiana = false;
+                for (int i = 0; i < tab.Length - 1; i++)
+                {
+                    if (tab[i] > tab[i + 1])
+                    {
+                        temp = tab[i + 1];
+                        tab[i + 1] = tab[i];
+                        tab[i] = temp;
+                        czyzamiana = true;
+                    }
+                }
+            } while (czyzamiana);
+            int wynik2 = 0;
+            //MessageBox.Show(wynik.ToString());
+            for(int i=0;i<tab.Length;i++)
+            {
+                wynik2 += tab[i];
+                wynik2 *= 10;
+            }
+            wynik2 /=10;
+            MessageBox.Show(wynik2.ToString());
+            */
+            /*
+            string tab1 = (string)tb.Text;
+            if(tab1 == "")
+            {
+                MessageBox.Show("Nic nie wpisano");
+            }
+            int[] tab2 = Covert(tab1);
+            string tab3 = "";
+            for (int i = 0; i < tab2.Length; i++)
+            {
+                tab3 += tab2[i];
+            }
+            MessageBox.Show(tab3.ToString());
+            */
+            int[] tab = { 5, 4, 7, 3, 5 };
+            int[] tabtemp = { 5, 4, 7, 3, 5 };
+            int temp = 0;
+            int d = 5;
+            bool czyzamiana = false;
+            do
+            {
+                czyzamiana = false;
+                for (int i = 0; i < tab.Length - 1; i++)
+                {
+                    if (tab[i] > Minimum(tab, i, tab.Length))
+                    {
+                        temp = tab[i + 1];
+                        tab[i + 1] = tab[i];
+                        tab[i] = temp;
+                        czyzamiana = true;
+                    }
+                }
+            } while (czyzamiana);
+            int wynik2 = 0;
+            //MessageBox.Show(wynik.ToString());
+            for (int i = 0; i < tab.Length; i++)
+            {
+                wynik2 += tab[i];
+                wynik2 *= 10;
+            }
+            wynik2 /= 10;
+            MessageBox.Show(wynik2.ToString());
+
+        }
+        int Minimum (int[] tab, int start, int end)
+        {
+            int wynik = start;
+            for(int i=start; i <end; i++)
+            {
+                if(tab[i] < tab[wynik])
+                {
+                    wynik = i;
+                }
+            }
+            return wynik;
+        }
+        int[] Covert (string napis)
+        {
+            var liczbyS = napis.Trim().Split('_');
+            int[] liczby =new int[liczbyS.Length];
+            for(int i =0; i<liczbyS.Length; i++)
+            {
+                liczby[i] = int.Parse(liczbyS[i]);
+            }
+            return liczby;
+        }
+        int Fib(int n)
+        {
+            if (n == 1)
+            {
+                return 1;
+            }
+            else if (n == 0)
+            {
+                return 0;
+            }
+            return Fib(n - 1)+Fib(n-2);
+        }
+        ulong Fib2(int n)
+        {
+            if (n == 0 || n == 1)
+            {
+                return (ulong)n;
+            }
+            ulong[] wyrazy = new ulong[n+1];
+            wyrazy[0] = 0;
+            wyrazy[1] = 1;
+            for (int i = 2; i < wyrazy.Length; i++)
+            {
+                wyrazy[i] = wyrazy[i - 1] + wyrazy[i - 2];
+            }
+            return wyrazy[n];
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
