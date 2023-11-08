@@ -1,0 +1,47 @@
+namespace Hrypas2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Węzel w1 = new Węzel(5);
+            Węzel w2 = new Węzel(3);
+            Węzel w3 = new Węzel(1);
+            Węzel w4 = new Węzel(2);
+            Węzel w5 = new Węzel(4);
+            Węzel w6 = new Węzel(6);
+            w1.dzieci.Add(w2);
+            w1.dzieci.Add(w3);
+            w1.dzieci.Add(w4);
+            w2.dzieci.Add(w5);
+            w2.dzieci.Add(w6);
+            A(w2);
+            A(w1);
+        }
+        void A(Węzel w)
+        {
+            MessageBox.Show(w.wartosc.ToString());
+            int i = 0;
+            A(w.dzieci[i]);
+            i++;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+    class Węzel
+    {
+        public int wartosc;
+        public List<Węzel> dzieci = new List<Węzel>();
+        public Węzel(int liczba)
+        {
+            this.wartosc = liczba;
+        }
+    }
+}
