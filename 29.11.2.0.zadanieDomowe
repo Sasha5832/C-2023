@@ -1,0 +1,80 @@
+namespace Hrypas3
+{
+    public partial class Form1 : Form
+    {
+        // ... (kod istniejący)
+
+        public Węzel3 Znajdz(int liczba)
+        {
+            return ZnajdzRekurencyjnie(this.korzen, liczba);
+        }
+
+        private Węzel3 ZnajdzRekurencyjnie(Węzel3 aktualny, int liczba)
+        {
+            if (aktualny == null || aktualny.wartosc == liczba)
+            {
+                return aktualny;
+            }
+
+            if (liczba < aktualny.wartosc)
+            {
+                return ZnajdzRekurencyjnie(aktualny.lewedziecko, liczba);
+            }
+            else
+            {
+                return ZnajdzRekurencyjnie(aktualny.prawedziecko, liczba);
+            }
+        }
+
+        public Węzel3 ZnajdzMin(Węzel3 w)
+        {
+            while (w.lewedziecko != null)
+            {
+                w = w.lewedziecko;
+            }
+            return w;
+        }
+
+        public Węzel3 ZnajdzMax(Węzel3 w)
+        {
+            while (w.prawedziecko != null)
+            {
+                w = w.prawedziecko;
+            }
+            return w;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DzewoBinarne w1 = new DzewoBinarne(5);
+            w1.Add2(8);
+            w1.Add2(4);
+            w1.Add2(3);
+            w1.Add2(4);
+            w1.Add2(7);
+            w1.Add2(6);
+            w1.WyswietlWartosciMessageBox();
+
+            // Przykład użycia nowych funkcji:
+            int szukanaWartosc = 6;
+            Węzel3 znalezionyWezel = w1.Znajdz(szukanaWartosc);
+
+            if (znalezionyWezel != null)
+            {
+                MessageBox.Show($"Znaleziono węzeł o wartości {szukanaWartosc}", "Wyszukiwanie");
+            }
+            else
+            {
+                MessageBox.Show($"Nie znaleziono węzła o wartości {szukanaWartosc}", "Wyszukiwanie");
+            }
+
+            Węzel3 minWezel = w1.ZnajdzMin(w1.korzen);
+            MessageBox.Show($"Najmniejsza wartość w drzewie: {minWezel.wartosc}", "Minimum");
+
+            Węzel3 maxWezel = w1.ZnajdzMax(w1.korzen);
+            MessageBox.Show($"Największa wartość w drzewie: {maxWezel.wartosc}", "Maksimum");
+        }
+
+        // ... (kod istniejący)
+    }
+}
