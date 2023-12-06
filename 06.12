@@ -133,7 +133,6 @@ namespace Hrypas3
             {
                 return ZnajdzRekurencyjnie(this.korzen, liczba);
             }
-
             private Węzel3 ZnajdzRekurencyjnie(Węzel3 aktualny, int liczba)
             {
                 if (aktualny == null || aktualny.wartosc == liczba)
@@ -157,6 +156,13 @@ namespace Hrypas3
                     w = w.lewedziecko;
                 }
                 return w;
+            }
+            public Węzel3 Usun(Węzel3 w)
+            {
+                //1) nie ma dzieci , odwiązujemy w3 rodzic = null, w2 dziecko == null
+                //2) jest jedno dziecko - zapisujemo dziecko jak dziecko dzadka (dziecko zastepuje rodzica)
+                //3) 2 dzieci skozystacz z nastepnika oraz poprzednika
+                return null;
             }
 
             public Węzel3 ZnajdzMax(Węzel3 w)
