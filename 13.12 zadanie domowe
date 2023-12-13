@@ -1,0 +1,60 @@
+            public Węzel3 Usun(Węzel3 w)
+            {
+                if (w == null)
+                    return null;
+
+                // Przypadek 1: Węzeł nie ma dzieci
+                if (w.lewedziecko == null && w.prawedziecko == null)
+                {
+                    if (w.rodzic != null)
+                    {
+                        if (w.rodzic.lewedziecko == w)
+                            w.rodzic.lewedziecko = null;
+                        else
+                            w.rodzic.prawedziecko = null;
+                    }
+                    else
+                    {
+                        // Usuwamy korzeń
+                        this.korzen = null;
+                    }
+                }
+                // Przypadek 2: Węzeł ma jedno dziecko
+                else if (w.lewedziecko == null)
+                {
+                    ZamienWęzeł(w, w.prawedziecko);
+                }
+                else if (w.prawedziecko == null)
+                {
+                    ZamienWęzeł(w, w.lewedziecko);
+                }
+                // Przypadek 3: Węzeł ma dwoje dzieci
+                else
+                {
+                    Węzel3 nastepnik = this.ZnajdzMin(w.prawedziecko);
+                    w.wartosc = nastepnik.wartosc;
+                    Usun(nastepnik);
+                }
+
+                return w;
+            }
+
+            private void ZamienWęzeł(Węzel3 stary, Węzel3 nowy)
+            {
+                if (stary.rodzic != null)
+                {
+                    if (stary.rodzic.lewedziecko == stary)
+                        stary.rodzic.lewedziecko = nowy;
+                    else
+                        stary.rodzic.prawedziecko = nowy;
+                }
+                else
+                {
+                    this.korzen = nowy;
+                }
+
+                if (nowy != null)
+                {
+                    nowy.rodzic = stary.rodzic;
+                }
+            }
